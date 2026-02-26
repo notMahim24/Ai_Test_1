@@ -1,0 +1,79 @@
+Roadmap:
+--------
+
+Building an end-to-end AI system as a beginner is best done by focusing on a "regression" or "classification" problem. Since you enjoy "building and breaking," we will create a **House Price Predictor**. This project is the "Hello World" of ML but allows you to touch every part of the lifecycle: data, training, API development, and deployment.
+
+---
+
+## The Project: Real Estate Price Predictor
+
+You will build a system that takes features of a house (like square footage and number of rooms) and predicts its market price.
+
+### Phase 1: The "Brain" (Model Training)
+
+1. **Environment Setup**: Install Python and the core libraries.
+* `pip install pandas scikit-learn matplotlib seaborn`
+
+
+2. **Get the Data**: Use the **California Housing Dataset** (built into Scikit-learn).
+3. **Exploratory Data Analysis (EDA)**: Use `pandas` to see the data and `seaborn` to find correlations.
+* *Break it:* Try training the model without cleaning "outliers" (like houses with 50 rooms) to see how it ruins your accuracy.
+
+
+4. **Train the Model**: Use **Linear Regression** or a **Random Forest**.
+
+$$Price = \beta_0 + \beta_1(SqFt) + \beta_2(Rooms) + \epsilon$$
+
+
+5. **Save the Model**: Use `pickle` or `joblib` to export your trained model as a `.pkl` file. This "freezes" the AI so you can use it later without retraining.
+
+---
+
+### Phase 2: The "Body" (API Development)
+
+Now, you need a way for a user to talk to your model.
+
+1. **Framework**: Use **FastAPI** or **Flask**.
+2. **The Endpoint**: Create a `/predict` route. This route will:
+* Accept JSON input (e.g., `{"sq_ft": 2000, "rooms": 3}`).
+* Load your `.pkl` file.
+* Run the data through the model.
+* Return the predicted price.
+
+
+3. **Test Locally**: Run your server and use a tool like Postman or even just your browser to see the prediction.
+
+---
+
+### Phase 3: The "Armor" (Containerization)
+
+To ensure it works on any machine (the "it works on my machine" fix), use **Docker**.
+
+1. **Create a Dockerfile**: Write instructions to install Python, copy your code/model, and start the API.
+2. **Build & Run**:
+* `docker build -t house-price-app .`
+* `docker run -p 80:80 house-price-app`
+
+
+3. *Break it:* Try running the container without copying the `.pkl` file. You'll see the API crash immediately—a great lesson in **dependency management**.
+
+---
+
+### Phase 4: The "Home" (Deployment)
+
+1. **GitHub**: Push your code to a repository.
+2. **Streamlit (Optional)**: If you want a pretty UI instead of just a raw API, use Streamlit. It lets you build a web dashboard using only Python.
+3. **Free Hosting**: Deploy the app to **Streamlit Community Cloud** or **Render**.
+
+---
+
+## Step-by-Step Learning Path
+
+| Step | Focus | Goal |
+| --- | --- | --- |
+| **1** | **Python/Pandas** | Load a CSV and calculate the average house price. |
+| **2** | **Scikit-Learn** | Split data into "Train" and "Test" sets. |
+| **3** | **Modeling** | Train your first Linear Regression model. |
+| **4** | **API** | Wrap that model in a FastAPI script. |
+| **5** | **Cloud** | Get a URL where anyone can access your predictor. |
+
