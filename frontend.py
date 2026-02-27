@@ -15,7 +15,7 @@ lat = st.sidebar.number_input("Latitude", value=34.05)
 lon = st.sidebar.number_input("Longitude", value=-118.24)
 
 # Deployment URL (Change this once Render gives you a link!)
-BACKEND_URL = "http://localhost:8000/predict" 
+BACKEND_URL = "https://house-price-9f1t.onrender.com/predict" 
 
 if st.button("Get Estimated Price"):
     payload = {
