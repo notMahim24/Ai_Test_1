@@ -2,9 +2,20 @@ from fastapi import FastAPI
 import joblib
 import pandas as pd
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+
 
 # Initialize FastAPI
 app = FastAPI(title="California Housing Predictor")
+
+# ... after app = FastAPI() ...
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods (POST, GET, etc.)
+    allow_headers=["*"],
+)
 
 # Load the Brain (Model) and the Filter (Scaler)
 # We load these OUTSIDE the functions so they stay in memory
